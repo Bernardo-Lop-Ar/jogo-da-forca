@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jogo da Forca: descubra a palavra secreta antes de esgotar suas tentativas.">
+    <title>Jogo da Forca</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main class="container">
+        <header class="cabecalho">
+            <h1>Jogo da Forca</h1>
+            <p>Descubra a palavra secreta, uma letra por vez!</p>
+        </header>
+
+        <section class="jogo" aria-labelledby="titulo-jogo">
+            <h2 id="titulo-jogo">Adivinhe a palavra</h2>
+
+            <div id="desenho-forca" aria-hidden="true">
+                <!-- O desenho será implementado posteriormente. -->
+            </div>
+
+            <p id="tentativas">Erros: 0 de 6</p>
+
+            <div
+                id="palavra"
+                class="palavra"
+                aria-label="Palavra secreta"
+                aria-live="polite"
+            >
+                <!-- As letras serão inseridas pelo JavaScript. -->
+            </div>
+
+            <div
+                id="teclado"
+                class="teclado"
+                aria-label="Teclado de letras"
+            >
+                <!-- Os botões serão inseridos pelo JavaScript. -->
+            </div>
+
+            <p id="mensagem" role="status" aria-live="polite">
+                Boa sorte!
+            </p>
+
+            <button id="reiniciar" type="button">
+                Novo jogo
+            </button>
+        </section>
+
+        <footer class="rodape">
+            <p>Feito para praticar HTML, CSS e JavaScript.</p>
+        </footer>
+    </main>
+</body>
+</html>

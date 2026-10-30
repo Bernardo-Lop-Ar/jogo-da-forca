@@ -1,0 +1,310 @@
+
+:root {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #f4f4f8;
+    background: #11111b;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    --cor-fundo: #11111b;
+    --cor-cartao: #1d1d2b;
+    --cor-destaque: #a78bfa;
+    --cor-destaque-hover: #8b5cf6;
+    --cor-texto: #f4f4f8;
+    --cor-secundaria: #aaa9bd;
+    --cor-erro: #fb7185;
+    --cor-sucesso: #4ade80;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+    padding: 32px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:
+        radial-gradient(ellipse at top, #292044 0%, transparent 55%),
+        var(--cor-fundo);
+}
+
+button {
+    font: inherit;
+}
+
+.container {
+    width: 100%;
+    max-width: 760px;
+    margin: auto;
+}
+
+.cabecalho {
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+.cabecalho h1 {
+    margin: 0 0 12px;
+    color: var(--cor-destaque);
+    font-size: clamp(2rem, 6vw, 3rem);
+    letter-spacing: -1px;
+}
+
+.cabecalho p,
+.rodape p {
+    color: var(--cor-secundaria);
+    line-height: 1.6;
+}
+
+.jogo {
+    padding: clamp(20px, 5vw, 40px);
+    border: 1px solid #343348;
+    border-radius: 24px;
+    background: var(--cor-cartao);
+    box-shadow: 0 20px 60px rgb(0 0 0 / 25%);
+    text-align: center;
+}
+
+.jogo h2 {
+    margin-top: 0;
+    font-size: 1.4rem;
+}
+
+#desenho-forca {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+    margin: 16px 0;
+}
+
+#tentativas {
+    color: var(--cor-secundaria);
+    font-weight: 600;
+}
+
+.palavra {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    min-height: 55px;
+    margin: 30px 0;
+}
+
+.letra-palavra {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 38px;
+    min-height: 45px;
+    border-bottom: 3px solid var(--cor-destaque);
+    font-size: 1.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.teclado {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 24px 0;
+}
+
+.teclado button {
+    width: 42px;
+    height: 42px;
+    border: 1px solid #45445c;
+    border-radius: 10px;
+    background: #29283b;
+    color: var(--cor-texto);
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.teclado button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    background: #40385c;
+}
+
+.teclado button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+#mensagem {
+    min-height: 24px;
+    margin: 24px 0;
+    font-weight: 600;
+}
+
+#mensagem.vitoria {
+    color: var(--cor-sucesso);
+}
+
+#mensagem.derrota {
+    color: var(--cor-erro);
+}
+
+#reiniciar {
+    padding: 13px 24px;
+    border: 0;
+    border-radius: 12px;
+    background: var(--cor-destaque);
+    color: #171324;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+#reiniciar:hover {
+    background: var(--cor-destaque-hover);
+    color: white;
+}
+
+button:focus-visible {
+    outline: 3px solid white;
+    outline-offset: 3px;
+}
+
+.rodape {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 24px 12px;
+    }
+
+    .jogo {
+        border-radius: 18px;
+    }
+
+    .teclado {
+        gap: 6px;
+    }
+
+    .teclado button {
+        width: 36px;
+        height: 40px;
+    }
+
+    .letra-palavra {
+        width: 28px;
+        font-size: 1.35rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
+
+/* Desenho da forca */
+#desenho-forca {
+    position: relative;
+    width: 220px;
+    height: 180px;
+    margin: 24px auto;
+}
+
+#desenho-forca > div {
+    position: absolute;
+    background: var(--cor-destaque);
+    border-radius: 4px;
+}
+
+.forca-base {
+    width: 140px;
+    height: 6px;
+    left: 20px;
+    bottom: 10px;
+}
+
+.forca-poste {
+    width: 6px;
+    height: 160px;
+    left: 45px;
+    bottom: 10px;
+}
+
+.forca-topo {
+    width: 100px;
+    height: 6px;
+    left: 45px;
+    top: 10px;
+}
+
+.forca-corda {
+    width: 4px;
+    height: 28px;
+    left: 141px;
+    top: 10px;
+}
+
+.forca-cabeca {
+    width: 28px;
+    height: 28px;
+    left: 129px;
+    top: 35px;
+    border: 4px solid var(--cor-destaque);
+    border-radius: 50% !important;
+    background: transparent !important;
+}
+
+.forca-corpo {
+    width: 5px;
+    height: 45px;
+    left: 141px;
+    top: 63px;
+}
+
+.forca-braco-esquerdo,
+.forca-braco-direito,
+.forca-perna-esquerda,
+.forca-perna-direita {
+    width: 5px;
+    height: 30px;
+}
+
+.forca-braco-esquerdo {
+    left: 130px;
+    top: 68px;
+    transform: rotate(45deg);
+}
+
+.forca-braco-direito {
+    left: 152px;
+    top: 68px;
+    transform: rotate(-45deg);
+}
+
+.forca-perna-esquerda {
+    left: 131px;
+    top: 102px;
+    transform: rotate(35deg);
+}
+
+.forca-perna-direita {
+    left: 151px;
+    top: 102px;
+    transform: rotate(-35deg);
+}
