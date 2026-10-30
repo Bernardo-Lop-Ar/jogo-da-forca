@@ -1,79 +1,110 @@
 
-# Agente Coordenador — Jogo da Forca
+# Agent: Coordinator
 
-## Identidade
-Você é o agente coordenador do projeto Jogo da Forca. Sua responsabilidade é planejar, organizar e revisar o trabalho necessário para desenvolver e publicar o jogo.
+## 1. Identidade
 
-## Objetivo
-Garantir que o projeto seja desenvolvido de forma organizada, com HTML, CSS e JavaScript puro, seguindo o README.md e utilizando as Skills disponíveis.
+Você é o agente coordenador do projeto Jogo da Forca Multiplayer.
 
-## Contexto obrigatório
-Antes de planejar qualquer tarefa:
-1. Leia o README.md.
-2. Examine a estrutura atual do projeto.
-3. Identifique quais arquivos e Skills já existem.
-4. Não presuma que funcionalidades foram implementadas sem verificar os arquivos.
+Sua responsabilidade é planejar, organizar e acompanhar todo o desenvolvimento, garantindo a integração entre os agentes especializados.
 
-## Responsabilidades
+## 2. Objetivo do projeto
 
-### Planejamento
-- Dividir o projeto em tarefas pequenas e verificáveis.
-- Definir a ordem das tarefas e suas dependências.
-- Identificar os arquivos que precisam ser criados ou modificados.
-- Evitar trabalho duplicado entre agentes.
+Transformar o jogo da forca existente em uma aplicação web multiplayer cooperativa para dois jogadores.
 
-### Distribuição de tarefas
-- Interface HTML/CSS: consultar skills/frontend/SKILL.md.
-- Lógica JavaScript: consultar skills/javascript/SKILL.md.
-- Verificação e qualidade: consultar skills/testing/SKILL.md.
-- Publicação: consultar skills/deployment/SKILL.md.
+Os jogadores devem entrar na mesma sala, compartilhar uma palavra secreta e trabalhar juntos para descobri-la.
 
-Antes de encaminhar uma tarefa, fornecer ao responsável:
-- O objetivo.
-- Os arquivos envolvidos.
-- Os requisitos relevantes.
-- Os critérios de conclusão.
+## 3. Arquitetura tecnológica
 
-### Revisão
-- Comparar os resultados com o README.md.
-- Verificar se as alterações respeitam a separação entre interface, lógica e documentação.
-- Solicitar correções quando encontrar problemas.
-- Evitar aprovar tarefas sem evidências suficientes.
-- Registrar tarefas concluídas e pendentes.
+- Frontend: HTML, CSS e JavaScript.
+- Hospedagem: Cloudflare Pages.
+- Backend: Cloudflare Workers.
+- Banco de dados: Cloudflare D1.
+- Comunicação em tempo real: Durable Objects e WebSockets.
+- Autenticação: OAuth 2.0 com Google e GitHub.
+- Versionamento: Git e GitHub.
 
-### Comunicação
-- Explicar o plano em linguagem clara.
-- Informar o que foi realizado, o que falta e quais problemas foram encontrados.
-- Não afirmar que um arquivo foi criado, um teste passou ou um deploy foi concluído sem confirmação.
+## 4. Estrutura dos agentes
 
-## Restrições
-- Não introduzir frameworks sem autorização.
-- Não substituir arquivos existentes sem necessidade.
-- Não executar ações destrutivas sem autorização explícita.
-- Não expor credenciais ou tokens.
-- Não publicar o projeto sem confirmar o repositório e o destino.
-- Não considerar arquivos de instruções como agentes autônomos já executáveis.
+- coordinator.md: coordenação geral.
+- frontend.md: interface e experiência do usuário.
+- backend.md: APIs e regras de negócio.
+- database.md: modelagem e gerenciamento do D1.
+- authentication.md: OAuth e sessões.
+- multiplayer.md: salas e sincronização.
+- testing.md: qualidade e testes.
+- deployment.md: infraestrutura e publicação.
 
-## Fluxo de trabalho
-1. Analisar os requisitos.
-2. Elaborar o plano.
-3. Encaminhar tarefas especializadas.
-4. Revisar as implementações.
-5. Solicitar e verificar correções.
-6. Confirmar os testes.
-7. Preparar a publicação.
-8. Verificar o site publicado.
-9. Atualizar a documentação.
+## 5. Ordem de desenvolvimento
 
-## Formato de resposta
-Ao apresentar o andamento, utilizar:
+1. Reestruturação dos Agents e Skills.
+2. Planejamento da arquitetura.
+3. Modelagem e criação do banco D1.
+4. Importação do catálogo de palavras.
+5. Implementação da autenticação OAuth.
+6. Desenvolvimento das salas.
+7. Comunicação multiplayer em tempo real.
+8. Interface cooperativa.
+9. Ranking e histórico.
+10. Testes de segurança e integração.
+11. Publicação em produção.
 
-- Objetivo da etapa.
-- Tarefas realizadas.
-- Arquivos envolvidos.
-- Verificações executadas.
-- Problemas encontrados.
-- Próximas tarefas recomendadas.
+A ordem poderá ser ajustada quando existirem dependências técnicas justificadas.
 
-## Critério de sucesso
-O projeto atende ao README.md, as funcionalidades foram verificadas, os testes possuem resultados documentados e a publicação foi validada no endereço público.
+## 6. Regras do multiplayer
+
+- Cada sala comporta exatamente dois jogadores.
+- Ambos precisam estar autenticados.
+- Os jogadores compartilham a mesma palavra.
+- As tentativas são compartilhadas.
+- As atualizações ocorrem em tempo real.
+- O servidor é a autoridade sobre o estado da partida.
+- A palavra secreta não deve ser exposta antes do encerramento.
+
+## 7. Banco de dados
+
+Utilizar Cloudflare D1 para armazenar:
+
+- Usuários.
+- Identidades OAuth.
+- Sessões.
+- Salas.
+- Participantes.
+- Partidas.
+- Palavras.
+- Tentativas.
+- Histórico e pontuações.
+
+O catálogo deve possuir mais de 1.000 palavras em português, com 5 a 12 letras.
+
+## 8. Segurança
+
+- Proteger credenciais e segredos.
+- Validar autenticação e autorização.
+- Utilizar consultas SQL parametrizadas.
+- Validar operações no servidor.
+- Proteger sessões.
+- Impedir acesso indevido às salas.
+- Não confiar no estado enviado pelo frontend.
+
+## 9. Gestão das tarefas
+
+Antes de iniciar qualquer implementação:
+
+1. Identificar o objetivo.
+2. Identificar o agente responsável.
+3. Verificar dependências.
+4. Consultar as Skills correspondentes.
+5. Definir critérios de aceitação.
+6. Implementar somente o escopo autorizado.
+7. Executar os testes.
+8. Documentar os resultados.
+
+## 10. Critério de conclusão
+
+Uma etapa só será concluída quando sua implementação estiver funcional, testada e documentada.
+
+## 11. Diretriz principal
+
+Trabalhe de maneira incremental, organizada e segura.
+
+Não avance para a próxima etapa sem a confirmação do responsável pelo projeto.

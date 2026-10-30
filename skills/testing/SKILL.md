@@ -1,75 +1,104 @@
 
----
-name: testing
-description: Orienta a verificação funcional e técnica de aplicações web estáticas, com foco em detectar falhas, validar regras de negócio e confirmar resultados dos testes.
----
+# Skill: Software Testing
 
-# Skill de testes e qualidade
+## 1. Objetivo
 
-## Objetivo
-Verificar se o jogo da forca funciona conforme os requisitos do README.md, identificando falhas antes da publicação.
+Definir procedimentos de teste e validação para o Jogo da Forca Multiplayer.
 
-## Quando utilizar
-Utilize esta Skill após implementar uma funcionalidade, corrigir um erro ou preparar uma versão para publicação.
+## 2. Tipos de testes
 
-## Procedimento
+### Testes unitários
+- Funções isoladas.
+- Validação de dados.
+- Regras de negócio.
+- Normalização de palavras.
+- Cálculos de pontuação.
 
-1. Leia o README.md e identifique os requisitos aplicáveis.
-2. Examine os arquivos e as alterações realizadas.
-3. Identifique os comportamentos esperados antes de executar os testes.
-4. Teste os principais fluxos do jogo.
-5. Verifique o console do navegador em busca de erros JavaScript.
-6. Verifique se os arquivos HTML, CSS e JavaScript carregam corretamente.
-7. Confirme se a interface funciona em telas pequenas e grandes.
-8. Registre os resultados dos testes com clareza.
-9. Diferencie testes executados de testes apenas planejados.
-10. Não declare que um teste passou sem evidência suficiente.
-11. Se encontrar uma falha, descreva os passos para reproduzi-la.
-12. Sugira uma correção objetiva e verifique novamente o comportamento alterado.
+### Testes de integração
+- Comunicação entre frontend e backend.
+- Integração com Cloudflare D1.
+- Integração com OAuth.
+- Comunicação com Durable Objects.
+- Comunicação WebSocket.
 
-## Cenários obrigatórios
+### Testes funcionais
+- Login.
+- Logout.
+- Criação de sala.
+- Entrada por código.
+- Início de partida.
+- Tentativas.
+- Vitória.
+- Derrota.
+- Histórico.
+- Ranking.
 
-### Inicialização
-- [ ] O jogo inicia com uma palavra selecionada.
-- [ ] As letras da palavra permanecem ocultas inicialmente.
-- [ ] A contagem de erros começa em zero.
-- [ ] Os controles de letras estão disponíveis.
+### Testes multiplayer
+- Dois jogadores na mesma sala.
+- Sincronização de letras.
+- Sincronização de erros.
+- Tentativas simultâneas.
+- Letras repetidas.
+- Desconexão.
+- Reconexão.
+- Tentativa de terceiro participante.
 
-### Letras
-- [ ] Uma letra correta revela todas as ocorrências correspondentes.
-- [ ] Uma letra incorreta incrementa a contagem de erros.
-- [ ] Uma letra repetida não incrementa os erros novamente.
-- [ ] A mesma letra não pode ser contabilizada duas vezes.
-- [ ] Letras inválidas não alteram o estado da partida.
+### Testes de segurança
+- Acesso sem autenticação.
+- Acesso indevido a salas.
+- Manipulação de requisições.
+- Mensagens WebSocket inválidas.
+- Tentativas de revelar a palavra secreta.
+- Validação de permissões.
 
-### Vitória e derrota
-- [ ] Descobrir todas as letras encerra a partida com vitória.
-- [ ] Atingir o limite de erros encerra a partida com derrota.
-- [ ] O resultado final é exibido claramente.
-- [ ] Novas tentativas não alteram uma partida encerrada.
+## 3. Procedimento de testes
 
-### Reinício
-- [ ] O botão de reinício inicia uma nova partida.
-- [ ] A contagem de erros volta a zero.
-- [ ] As letras escolhidas são limpas.
-- [ ] Os controles são reativados.
-- [ ] O jogo continua funcionando após várias partidas.
+Para cada funcionalidade:
 
-### Interface e publicação
-- [ ] Os botões funcionam com mouse e teclado.
-- [ ] A interface se adapta a telas pequenas.
-- [ ] Não há erros inesperados no console.
-- [ ] Os caminhos dos arquivos funcionam em hospedagem estática.
-- [ ] A versão publicada funciona no endereço do Cloudflare Pages.
+1. Definir o comportamento esperado.
+2. Preparar o ambiente.
+3. Executar o cenário.
+4. Comparar resultado esperado e obtido.
+5. Registrar falhas.
+6. Corrigir problemas.
+7. Reexecutar os testes.
 
-## Relatório de testes
+## 4. Regras de qualidade
 
-Ao concluir, apresente:
+- Não considerar testes aprovados sem execução real.
+- Não ignorar falhas.
+- Testar cenários positivos e negativos.
+- Evitar regressões.
+- Repetir testes após correções.
+- Não utilizar dados reais sensíveis em testes.
 
-- Funcionalidades verificadas.
-- Testes executados e seus resultados.
-- Falhas encontradas.
-- Correções aplicadas e retestadas.
-- Testes pendentes ou limitações do ambiente.
+## 5. Testes multiplayer
 
-Não utilize bibliotecas de teste externas sem autorização prévia. Quando não houver automação disponível, execute testes manuais reproduzíveis e identifique-os como manuais.
+Sempre utilizar dois clientes independentes para validar a sincronização.
+
+Verificar se ambos recebem o mesmo estado oficial da partida.
+
+Testar também o comportamento quando um cliente perde a conexão.
+
+## 6. Relatórios
+
+Documentar:
+
+- Nome do teste.
+- Objetivo.
+- Pré-condições.
+- Passos executados.
+- Resultado esperado.
+- Resultado obtido.
+- Status.
+- Evidências, quando disponíveis.
+
+## 7. Critérios de aceitação
+
+Uma funcionalidade será aprovada quando todos os cenários críticos definidos forem executados e não houver falhas bloqueadoras.
+
+## 8. Diretriz principal
+
+Priorize confiabilidade, segurança e prevenção de regressões.
+
+Nunca declare um teste aprovado sem evidências de execução.
